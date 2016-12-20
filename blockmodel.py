@@ -1,3 +1,5 @@
+#This code is an implement of Newman's stochastic block model to detect communities in a network,for more information, refer to this papr: https://arxiv.org/abs/1008.3926
+#Note that this code is not very efficient, you may optimize it
 import networkx as nx
 import math
 import matplotlib.pyplot as plt
@@ -166,7 +168,7 @@ class Blockmodel:
         for k, v in self.cluster.items():#show the result
             new_cluster.setdefault(v[0], []).append(k)
            
-        return new_cluster
+    return new_cluster
 #########################main##################################
 
         
