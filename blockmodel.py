@@ -4,64 +4,82 @@ import networkx as nx
 import math
 import matplotlib.pyplot as plt
 import random
+#import numpy as np
 
 class Blockmodel:
 
-    def __init__(self, graph, K): ##K>=2
+    def __init__(self, graph, K,name): ##K>=2
         self.K=K
-        self.max_communities = len(graph)
+        #self.max_communities = len(graph)
         self.graph=graph
         self.cluster={}
+        self.modified_cluster={}
         self.L_history=[]
         self.L = 0.0
         self.initial_cluster={}
+        self.new_cluster={}
         
         for node_id in graph.nodes_iter():
-            group_before=(node_id+random.randint(1,100))%K #initial group of nodes into K groups '''+random.randint(1,100)'''
+            if node_id<self.K+1:
+                group_before=node_id
+            group_before=random.randint(0,K-1)#(node_id+random.randint(1,100))%K #initial group of nodes into K groups '''+random.randint(1,100)'''
             group_after=group_before
             move=False
             move_number=0
-            
-            def group_current(group_before,group_after,move):
-                if move==True:
-                    return group_after
-                if move==False:
-                    return group_before
                 
-            self.cluster.update({node_id:[group_current(group_before,group_after,move), group_before,group_after,move,move_number]})
+            self.cluster.update({node_id:[group_before, group_before,group_after,move,move_number]})
+            self.modify_cluster()
+            
         for k, v in self.cluster.items():
             self.initial_cluster.setdefault(v[0], []).append(k)
                 
         for r in range(self.K):
             for s in range(self.K):
-                self.L+=self.m(r,s)*math.log(self.m(r,s)/(self.chi(r)*self.chi(s)))
+                self.L+=self.m(r,s)*self.c(self.m(r,s)/(self.chi(r)*self.chi(s)))  #initial L
         self.L_history=[self.L]
         
-        print self.initial_cluster
-        print self.repeat()
+        self.repeat()
+        
+######################write out############################
+        filename='%s_cluster_blockmodel.txt'%name
+        target=open(filename,'w')
+        target.write('initial')
+        target.write('\n')
+        target.write('%s'%self.initial_cluster)
+        target.write('\n')
+        target.write('after')
+        target.write('\n')
+        target.write('%s'%self.modified_cluster)
+        target.close()
 
-################plot###############
+##################################plot############################################
         fig = plt.figure()
         ax = fig.add_subplot(111)
         ax.plot(range(len(self.L_history)), self.L_history) 
         plt.show()
         
 #########################calculation delta_L#######################################
+    def modify_cluster(self):
+        self.modified_cluster={}
+        for k, v in self.cluster.items():
+            self.modified_cluster.setdefault(v[0], []).append(k)
+            
     def m(self,r,s): #total number of edges between community r and s
         m=0.0
-        for node_id in self.graph.nodes_iter():
-            if self.cluster[node_id][0]==r:
-                for node in self.graph[node_id]:
-                    if self.cluster[node][0]==s:
-                        m+=1
+
+        for node_id in self.modified_cluster[r]:
+            for node in self.graph[node_id]:
+                if self.cluster[node][0]==s:
+                    m+=1
+                    #m=m+graph.number_of_edges(node,node_id) for multigraph
         return m ##twice the edges when r=s 
         
     def k(self,i,t): #edges from vetex i to vertices in group t
         k=0.0
-        for node_id,group in self.cluster.items():
-            if group[0]==t and node_id!=i:
-                if node_id in self.graph[i].keys():
-                    k+=1
+        for node_id in self.modified_cluster[t]:
+            if node_id in self.graph[i].keys():
+                k+=1
+                #K=K+graph.number_of_edges(i,node_id) for multigraph
         return k
     
     def k_deg(self,node_id): #degree of vertex i
@@ -73,8 +91,10 @@ class Blockmodel:
             chi_=chi_+self.m(r,s)
         return chi_
         
-    #def u(i):
-      #no self edge considered for now     
+    def u(self,i): # don't add this to delta_L calculation for now
+        self_edge_list=self.graph.selfloop_edges() 
+        if (i,i) in self_edge_list:
+            return self_edge_list.count((i,i))
                                 
     def a(self,x):
         if x==0:
@@ -92,6 +112,14 @@ class Blockmodel:
         if x<0:
             return 'Wrong'
             
+    def c(self,x):
+        if x==0:
+            return 0.0
+        if x>0:
+            return math.log(x)
+        if x<0:
+            return 'Wrong'  
+                     
     def L_difference(self, i, s):
         r=self.cluster[i][0]
         delta_L=0.0
@@ -149,7 +177,7 @@ class Blockmodel:
             else:
                 self.cluster[node_id][0]=self.cluster[node_id][1]
                 
-                
+        
                 
     def reset(self):
         for node_id in self.graph.nodes_iter():
@@ -157,25 +185,23 @@ class Blockmodel:
             self.cluster[node_id][2]=self.cluster[node_id][0]
             self.cluster[node_id][3]=False
             self.cluster[node_id][4]=0
+            self.modify_cluster()
     
     def repeat(self):
-        new_cluster={}
         n=0
-        while n<1000:
+        while n<20:
             self.run()
             self.reset()
             n+=1
-        for k, v in self.cluster.items():#show the result
-            new_cluster.setdefault(v[0], []).append(k)
-           
-    return new_cluster
-#########################main##################################
 
         
 def main():
-    graph = nx.read_gml('karate.gml')
+    name='lesmis'
+    group_number=5 # here set the group number
+    name1='%s.gml'%name
+    graph = nx.read_gml(name1)
     #graph=nx.karate_club_graph()
-    Blockmodel(graph,2)
+    Blockmodel(graph,group_number,name)
 
 
     
