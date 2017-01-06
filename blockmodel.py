@@ -147,7 +147,7 @@ class Blockmodel:
                         delta_L=self.L_difference(node_id,s)
                         delta_L_list.append((delta_L,node_id,s))
         if delta_L_list==[]:
-            return []
+            return None
         else:
             return max(delta_L_list)
 
@@ -157,7 +157,7 @@ class Blockmodel:
         move_count=0
         #L_history_temp.append((self.L, move_count))
         while 1:
-            if self.max_delta_L()==[]:
+            if self.max_delta_L()==None:
                 break
             delta_L,node_id,group=self.max_delta_L()
             self.cluster[node_id][2]=group
