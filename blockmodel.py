@@ -1,3 +1,6 @@
+import matplotlib
+# Force matplotlib to not use any Xwindows backend.
+matplotlib.use('Agg')
 import networkx as nx
 import math
 import matplotlib.pyplot as plt
@@ -22,7 +25,6 @@ class Blockmodel:
                 group_before=node_id
             group_before=random.randint(0,K-1)#(node_id+random.randint(1,100))%K #initial group of nodes into K groups '''+random.randint(1,100)'''
             group_after=group_before
-            move=False
             move_number=0
                 
             self.cluster.update({node_id:[group_before, group_before,group_after,move_number]})
@@ -147,6 +149,7 @@ class Blockmodel:
         delta_L_list.sort()
         return delta_L_list
 
+
     def run(self):
         L_history_temp=[]
         move_count=0
@@ -159,6 +162,7 @@ class Blockmodel:
             self.cluster[node_id][2]=group
             self.cluster[node_id][3]=move_count
             #self.cluster[node_id][0]=group
+            #self.cluster[node_id][4]=move_count
             move_count+=1
             self.L+=delta_L
             L_history_temp.append((self.L, move_count))
@@ -179,6 +183,7 @@ class Blockmodel:
             self.cluster[node_id][1]=self.cluster[node_id][0]
             self.cluster[node_id][2]=self.cluster[node_id][0]
             self.cluster[node_id][3]=0
+            #self.cluster[node_id][4]=0
             self.modify_cluster()
     
     def repeat(self):
@@ -190,8 +195,8 @@ class Blockmodel:
 
         
 def main():
-    name='power'
-    group_number=40 # here set the group number
+    name='karate'
+    group_number=2 # here set the group number
     name1='%s.gml'%name
     graph = nx.read_gml(name1)
     #graph=nx.karate_club_graph()
