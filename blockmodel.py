@@ -25,7 +25,7 @@ class Blockmodel:
             move=False
             move_number=0
                 
-            self.cluster.update({node_id:[group_before, group_before,group_after,move,move_number]})
+            self.cluster.update({node_id:[group_before, group_before,group_after,move_number]})
             self.modify_cluster()
             
         for k, v in self.cluster.items():
@@ -157,9 +157,8 @@ class Blockmodel:
                 break
             delta_L,node_id,group=delta_L_list2.pop()
             self.cluster[node_id][2]=group
-            self.cluster[node_id][3]=True
+            self.cluster[node_id][3]=move_count
             #self.cluster[node_id][0]=group
-            self.cluster[node_id][4]=move_count
             move_count+=1
             self.L+=delta_L
             L_history_temp.append((self.L, move_count))
@@ -168,7 +167,7 @@ class Blockmodel:
         move_max=max(L_history_temp)[1]
         
         for node_id in self.graph.nodes_iter():
-            if self.cluster[node_id][4]<move_max:#I'm not sure why is < not <=, but it works
+            if self.cluster[node_id][3]<move_max:#I'm not sure why is < not <=, but it works
                 self.cluster[node_id][0]=self.cluster[node_id][2]
             else:
                 self.cluster[node_id][0]=self.cluster[node_id][1]
@@ -179,8 +178,7 @@ class Blockmodel:
         for node_id in self.graph.nodes_iter():
             self.cluster[node_id][1]=self.cluster[node_id][0]
             self.cluster[node_id][2]=self.cluster[node_id][0]
-            self.cluster[node_id][3]=False
-            self.cluster[node_id][4]=0
+            self.cluster[node_id][3]=0
             self.modify_cluster()
     
     def repeat(self):
