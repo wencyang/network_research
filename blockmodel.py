@@ -1,5 +1,3 @@
-#This code is an implement of Newman's stochastic block model to detect communities in a network,for more information, refer to this papr: https://arxiv.org/abs/1008.3926
-#Note that this code is not very efficient, you may optimize it
 import networkx as nx
 import math
 import matplotlib.pyplot as plt
@@ -56,7 +54,8 @@ class Blockmodel:
         fig = plt.figure()
         ax = fig.add_subplot(111)
         ax.plot(range(len(self.L_history)), self.L_history) 
-        plt.show()
+        figurename='%s_cluster_blockmodel.png'%name
+        plt.savefig(figurename)
         
 #########################calculation delta_L#######################################
     def modify_cluster(self):
@@ -138,28 +137,25 @@ class Blockmodel:
         
         return delta_L
 ########################iteration#######################################            
-    def max_delta_L(self):
+    def delta_L_list(self):
         delta_L_list=[]
         for node_id in self.graph.nodes_iter():
-            if self.cluster[node_id][3]==False:
-                for s in range(self.K):
+            for s in range(self.K):
                     if s!=self.cluster[node_id][0]:
                         delta_L=self.L_difference(node_id,s)
                         delta_L_list.append((delta_L,node_id,s))
-        if delta_L_list==[]:
-            return None
-        else:
-            return max(delta_L_list)
-
+        delta_L_list.sort()
+        return delta_L_list
 
     def run(self):
         L_history_temp=[]
         move_count=0
         #L_history_temp.append((self.L, move_count))
+        delta_L_list2=self.delta_L_list()
         while 1:
-            if self.max_delta_L()==None:
+            if delta_L_list2==[]:
                 break
-            delta_L,node_id,group=self.max_delta_L()
+            delta_L,node_id,group=delta_L_list2.pop()
             self.cluster[node_id][2]=group
             self.cluster[node_id][3]=True
             #self.cluster[node_id][0]=group
@@ -172,7 +168,7 @@ class Blockmodel:
         move_max=max(L_history_temp)[1]
         
         for node_id in self.graph.nodes_iter():
-            if self.cluster[node_id][4]<move_max:#I'm not sure why is < not <=
+            if self.cluster[node_id][4]<move_max:#I'm not sure why is < not <=, but it works
                 self.cluster[node_id][0]=self.cluster[node_id][2]
             else:
                 self.cluster[node_id][0]=self.cluster[node_id][1]
@@ -196,8 +192,8 @@ class Blockmodel:
 
         
 def main():
-    name='lesmis'
-    group_number=5 # here set the group number
+    name='power'
+    group_number=40 # here set the group number
     name1='%s.gml'%name
     graph = nx.read_gml(name1)
     #graph=nx.karate_club_graph()
