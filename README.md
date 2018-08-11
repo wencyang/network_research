@@ -12,7 +12,7 @@ stochastic block model is a model for network communities(or call it blocks) det
 
 You need to know the number of communities first, unlike other method. After that, you can start the K-means-like process to 
 
-move the node to different block. The idea is to maximize the liklihood L(G|g) = sum_over_rs{m_rs*log(m_rs/k_r*k_s)} where 
+move the node to different block. The idea is to maximize the liklihood L(G|g) = sum_over_rs{m_rs * log(m_rs/k_r*k_s)} where 
 
 g is the graph(network) and G is the assignment of communities. m_rs is the number of links between block r and s and k_r and 
 
