@@ -1,9 +1,7 @@
 # some small projects listed here
 1. Here I put some python code about my P609 computational physics class assignment.
 
-2. stochastic_block_model.py is an implementation of Newman's stochastic block model with some .gml files to test. It can be 
-
-improved
+2. stochastic_block_model.py is an implementation of Newman's stochastic block model with some .gml files to test. It can be  improved
 
 3. newmangreedy.py is an implementation of Newman's fast greedy algorithm, which can also be tested by .gml files.
 
