@@ -1,4 +1,4 @@
-# some small projects
+# Some small projects
 1. Here I put some python code about my P609 computational physics class assignment.
 
 2. stochastic_block_model.py is an implementation of Newman's stochastic block model with some .gml files to test. Code needs refactoring.
@@ -7,8 +7,8 @@
 
 4. The rest are some homeworks of computational physics.
 
-# about stochastic block model
-stochastic block model is a model for network communities (or call it blocks) detection. And it's also developed by MJ Newman. 
+# About stochastic block model
+   stochastic block model is a model for network communities (or call it blocks) detection. And it's also developed by MJ Newman. 
 
 You need to know the number of communities first, unlike other methods. After that, you can start the K-means-like process to 
 
