@@ -35,3 +35,7 @@
    [2] Stochastic blockmodels and community structure in networks
    
    https://journals.aps.org/pre/abstract/10.1103/PhysRevE.83.016107
+   
+# About usage of the files
+
+Free to use for any purposes.
