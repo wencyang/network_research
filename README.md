@@ -16,6 +16,7 @@
    liklihood L(G|g) = sum_over_rs{m_rs * log(m_rs/k_r*k_s)} where g is the graph(network) and G is the assignment of communities. m_rs is the number of links between block r and s and k_r and k_s is the degree of r and s
    
    References:
+   
    [1] Fast algorithm for detecting community structure in networks
    https://journals.aps.org/pre/abstract/10.1103/PhysRevE.69.066133
    
