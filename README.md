@@ -1,9 +1,9 @@
 # About the repo 
 1. Python code about P609 computational physics at Indiana University. The topic is cellular automata spring-block model of earthquakes
 
-2. stochastic_block_model.py is an implementation of Newman's stochastic block model with some .gml files to test. 
+2. stochastic_block_model.py is an implementation of Newman's stochastic block model with some .gml files to test. networkx is used.
 
-3. newmangreedy.py is an implementation of Newman's fast greedy algorithm, which can also be tested by .gml files.
+3. newmangreedy.py is an implementation of Newman's fast greedy algorithm, which can also be tested by .gml files. networkx is used.
 
 4. stochastic block model test.pdf is a experiment result for stochastic block model.
 
