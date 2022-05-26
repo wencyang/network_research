@@ -5,7 +5,9 @@
 
 3. newmangreedy.py is an implementation of Newman's fast greedy algorithm, which can also be tested by .gml files.
 
-4. Data
+4. stochastic block model test.pdf is a experiment result for stochastic block model.
+
+5. Data files
 
    karate.gml: classical network for a karate club
 
