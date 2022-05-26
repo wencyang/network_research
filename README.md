@@ -11,11 +11,11 @@
 
    karate.gml: classical network for a karate club
 
-   lesmis.gml: network for Les Miserables
+   lesmis.gml: network graph for Les Miserables
    
-   netscience.gml: network for netscience
+   netscience.gml: network graph for netscience
    
-   power.gml: network for power grid
+   power.gml: network graph for power grid
    
 
 # About stochastic block model
