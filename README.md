@@ -1,4 +1,4 @@
-# Some projects
+# About the repo 
 1. python code about P609 computational physics at Indiana University.
 
 2. stochastic_block_model.py is an implementation of Newman's stochastic block model with some .gml files to test. 
