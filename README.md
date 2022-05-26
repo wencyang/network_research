@@ -1,11 +1,11 @@
-# Some small projects
-1. some python code about my P609 computational physics class assignment.
+# Some projects
+1. python code about P609 computational physics at Indiana University.
 
-2. stochastic_block_model.py is an implementation of Newman's stochastic block model with some .gml files to test. Code needs refactor.
+2. stochastic_block_model.py is an implementation of Newman's stochastic block model with some .gml files to test. 
 
 3. newmangreedy.py is an implementation of Newman's fast greedy algorithm, which can also be tested by .gml files.
 
-4. The rest are some homeworks of computational physics.
+
 
 # About stochastic block model
    stochastic block model is a model for network communities (or call it blocks) detection. And it's also developed by MJ Newman. 
