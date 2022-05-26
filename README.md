@@ -1,11 +1,20 @@
 # About the repo 
-1. python code about P609 computational physics at Indiana University.
+1. Python code about P609 computational physics at Indiana University. The topic is cellular automata spring-block model of earthquakes
 
 2. stochastic_block_model.py is an implementation of Newman's stochastic block model with some .gml files to test. 
 
 3. newmangreedy.py is an implementation of Newman's fast greedy algorithm, which can also be tested by .gml files.
 
+4. Data
 
+   karate.gml: classical network for a karate club
+
+   lesmis.gml: network for Les Miserables
+   
+   netscience.gml: network for netscience
+   
+   power.gml: network for power grid
+   
 
 # About stochastic block model
    stochastic block model is a model for network communities (or call it blocks) detection.
