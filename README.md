@@ -18,7 +18,9 @@
    References:
    
    [1] Fast algorithm for detecting community structure in networks
+   
    https://journals.aps.org/pre/abstract/10.1103/PhysRevE.69.066133
    
    [2] Stochastic blockmodels and community structure in networks
+   
    https://journals.aps.org/pre/abstract/10.1103/PhysRevE.83.016107
