@@ -1,5 +1,5 @@
 # About the repo 
-This is a collection of codes and documents, mainly focus on community detection
+This is a collection of codes and documents, mainly focus on community detection.
 
 1. Python code about P609 computational physics at Indiana University. The topic is cellular automata spring-block model of earthquakes
 
@@ -37,7 +37,11 @@ This is a collection of codes and documents, mainly focus on community detection
    [2] Stochastic blockmodels and community structure in networks
    
    https://journals.aps.org/pre/abstract/10.1103/PhysRevE.83.016107
+
+   Two public free arxiv version reference papers are listed. 
    
 # About usage of the files
 
-Free to use for any purposes.
+Free to use for any purposes. 
+
+The .gml files are free for academic use as far as I know.
