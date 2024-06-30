@@ -1,11 +1,13 @@
 # About the repo 
+This is a collection of codes and documents, mainly focus on community detection
+
 1. Python code about P609 computational physics at Indiana University. The topic is cellular automata spring-block model of earthquakes
 
-2. stochastic_block_model.py is an implementation of Newman's stochastic block model with some .gml files to test. networkx is used.
+2. stochastic_block_model.py is an implementation of Newman's stochastic block model with some .gml files to test. package networkx is used.
 
-3. newmangreedy.py is an implementation of Newman's fast greedy algorithm, which can also be tested by .gml files. networkx is used.
+3. newmangreedy.py is an implementation of Newman's fast greedy algorithm, which can also be tested by .gml files. package networkx is used.
 
-4. stochastic block model test.pdf is a experiment result for stochastic block model.
+4. stochastic block model test.pdf is a summary of experiment results for the stochastic block model.
 
 5. Data files
 
@@ -15,11 +17,11 @@
    
    netscience.gml: network graph for netscience
    
-   power.gml: network graph for power grid
+   power.gml: network graph for power grids
    
 
 # About stochastic block model
-   stochastic block model is a model for network communities (or call it blocks) detection.
+   stochastic block model is a model for network communities (or blocks) detection.
 
 1. You need to know the number of communities first, unlike Newman's fast greedy algorithm. You can run Newman's fast greedy algorithm several times and calculate the average value as the number of communities.
 
