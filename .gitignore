@@ -1,0 +1,20 @@
+# Python virtual environment
+env/
+venv/
+.env/
+.venv/
+ENV/
+.Python
+*.pyc
+__pycache__/
+
+# CSV files
+*.csv
+
+# IDE settings
+.vscode/
+.idea/
+
+# Other common files to ignore
+.DS_Store
+*.log

@@ -32,9 +32,9 @@ def p(q,x):
       y.append(M(10000,t,q))  
     return y
 
+if __name__ == '__main__':
+    x=[10,100,500,1000,2000,3000]
+    plt.plot(x,p(0.1,x),'r',x,p(0.2,x),'b',x,p(0.3,x),'g')
 
-x=[10,100,500,1000,2000,3000,10000,25000,50000]
-plt.plot(x,p(0.1,x),'r',x,p(0.2,x),'b',x,p(0.3,x),'g')
-
-plt.show()
+    plt.show()
 
