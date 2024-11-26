@@ -38,7 +38,6 @@ This is a collection of codes and documents, mainly focus on community detection
    
    https://journals.aps.org/pre/abstract/10.1103/PhysRevE.83.016107
 
-   Two public free arxiv version reference papers are listed. 
    
 # About usage of the files
 
